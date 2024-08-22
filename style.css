@@ -52,7 +52,10 @@ form{
     padding: 10px;
 }
 
-#phone, #password{
+.input_container i{
+    color: rgb(120, 120, 120);
+}
+#phone, #password, #confirmPassword, #email{
     border: none;
     margin-left: 10px;
 }
