@@ -12,34 +12,42 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
         integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href=".cstyless">
 </head>
 
 <body>
     <section class="login_container">
         <div class="login">
-            <h2>Login</h2>
+            <h2>Create Account</h2>
             <form action="#" method="post">
                 <div class="input_container">
                     <i class="fa-solid fa-phone-volume"></i>
                     <input type="text" name="phone" id="phone" placeholder="Phone Number" required />
                 </div>
                 <div class="input_container">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" name="email" id="email" placeholder="Email Address" required />
+                </div>
+                <div class="input_container">
                     <i class="fa-solid fa-lock"></i>
                     <input type="password" name="password" id="password" placeholder="Password" required />
                     <i class="eye fa-regular fa-eye"></i>
                     <i class="eye fa-regular fa-eye-slash"></i>
-
+                </div>
+                <div class="input_container">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" required />
+                    <i class="eye confirm-eye fa-regular fa-eye"></i>
+                    <i class="eye confirm-eye fa-regular fa-eye-slash"></i>
                 </div>
 
-                <input type="submit" value="Login" />
+                <input type="submit" value="Create Account" />
 
-                <p>Don't have an account? <a href="#">Sign Up</a></p>
-
+                <p>Already have an account? <a href="#">Login</a></p>
+                
                 <!-- New Error Messege start 16/9/24 -->
                 <div class="error">
                     <i class="fa-solid fa-triangle-exclamation"></i>
-                    <p>Wrong phone number or password</p>
+                    <p>Password and confirm password doesn't match or this phone number is already registered</p>
                 </div>
                 <!-- New Error messege end -->
             </form>
@@ -48,28 +56,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const passwordInput = document.getElementById('password');
-            const eyeIcon = document.querySelector('.fa-eye');
-            const eyeSlashIcon = document.querySelector('.fa-eye-slash');
+            const togglePasswordVisibility = (passwordInputId, eyeIconClass, eyeSlashIconClass) => {
+                const passwordInput = document.getElementById(passwordInputId);
+                const eyeIcon = document.querySelector(eyeIconClass);
+                const eyeSlashIcon = document.querySelector(eyeSlashIconClass);
 
-            // Initially show the fa-eye icon and hide the fa-eye-slash icon
-            eyeIcon.style.display = 'inline';
-            eyeSlashIcon.style.display = 'none';
-
-            // Toggle password visibility and icon
-            eyeIcon.addEventListener('click', function () {
-                passwordInput.type = 'text';
-                eyeIcon.style.display = 'none';
-                eyeSlashIcon.style.display = 'inline';
-            });
-
-            eyeSlashIcon.addEventListener('click', function () {
-                passwordInput.type = 'password';
+                // Initially show the fa-eye icon and hide the fa-eye-slash icon
                 eyeIcon.style.display = 'inline';
                 eyeSlashIcon.style.display = 'none';
-            });
-        });
 
+                // Toggle password visibility and icon
+                eyeIcon.addEventListener('click', function () {
+                    passwordInput.type = 'text';
+                    eyeIcon.style.display = 'none';
+                    eyeSlashIcon.style.display = 'inline';
+                });
+
+                eyeSlashIcon.addEventListener('click', function () {
+                    passwordInput.type = 'password';
+                    eyeIcon.style.display = 'inline';
+                    eyeSlashIcon.style.display = 'none';
+                });
+            };
+
+            togglePasswordVisibility('password', '.fa-eye', '.fa-eye-slash');
+            togglePasswordVisibility('confirm_password', '.confirm-eye.fa-eye', '.confirm-eye.fa-eye-slash');
+        });
     </script>
 </body>
 
